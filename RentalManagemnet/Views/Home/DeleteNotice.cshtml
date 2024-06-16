@@ -1,0 +1,63 @@
+﻿@model RentalManagemnet.Models.Notice
+
+@{
+    ViewBag.Title = "DeleteNotice";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    body {
+        margin-top: 100px;
+        margin-left: 270px;
+    }
+</style>
+<h2>DeleteNotice</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Notice</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.noticeDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.noticeDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.noticeDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.noticeDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.noticeTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.noticeTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Property.propertyAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Property.propertyAddress)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Notifications")
+        </div>
+    }
+</div>

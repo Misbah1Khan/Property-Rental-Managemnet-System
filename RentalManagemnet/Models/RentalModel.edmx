@@ -1,0 +1,1110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="RentalManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Agents">
+          <Key>
+            <PropertyRef Name="agentID" />
+          </Key>
+          <Property Name="agentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="agentName" Type="varchar" MaxLength="255" />
+          <Property Name="agentPhone" Type="varchar" MaxLength="255" />
+          <Property Name="agentAddress" Type="varchar" MaxLength="255" />
+          <Property Name="agentFees" Type="money" />
+        </EntityType>
+        <EntityType Name="Applications">
+          <Key>
+            <PropertyRef Name="applicationID" />
+          </Key>
+          <Property Name="applicationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tenantID" Type="int" />
+          <Property Name="applicationDescription" Type="varchar" MaxLength="255" />
+          <Property Name="applicationStatus" Type="varchar" MaxLength="255" />
+          <Property Name="applicationTitle" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Invoice">
+          <Key>
+            <PropertyRef Name="invoiceID" />
+          </Key>
+          <Property Name="invoiceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="propertyID" Type="int" />
+          <Property Name="issueDate" Type="date" />
+          <Property Name="dueDate" Type="date" />
+          <Property Name="amountDue" Type="money" />
+          <Property Name="invoiceType" Type="varchar" MaxLength="255" />
+          <Property Name="invoiceStatus" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Maintenance">
+          <Key>
+            <PropertyRef Name="maintenanceID" />
+          </Key>
+          <Property Name="maintenanceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="maintenanceDescription" Type="varchar" MaxLength="255" />
+          <Property Name="maintenanceCost" Type="money" />
+          <Property Name="maintenanceDate" Type="date" />
+          <Property Name="propertyID" Type="int" />
+          <Property Name="maintenanceTitle" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Notices">
+          <Key>
+            <PropertyRef Name="noticeID" />
+          </Key>
+          <Property Name="noticeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="noticeDescription" Type="varchar" MaxLength="255" />
+          <Property Name="noticeDate" Type="date" />
+          <Property Name="noticeTitle" Type="varchar" MaxLength="255" />
+          <Property Name="propertyID" Type="int" />
+        </EntityType>
+        <EntityType Name="Property">
+          <Key>
+            <PropertyRef Name="propertyID" />
+          </Key>
+          <Property Name="propertyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="propertyAddress" Type="varchar" MaxLength="255" />
+          <Property Name="propertyType" Type="varchar" MaxLength="255" />
+          <Property Name="propertyRooms" Type="varchar" MaxLength="255" />
+          <Property Name="propertyGarages" Type="int" />
+          <Property Name="tenantID" Type="int" />
+          <Property Name="status" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="PropertyAudit">
+          <Key>
+            <PropertyRef Name="AuditID" />
+          </Key>
+          <Property Name="AuditID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ActionType" Type="varchar" MaxLength="10" />
+          <Property Name="propertyID" Type="int" />
+          <Property Name="Timestamp" Type="datetime" />
+        </EntityType>
+        <EntityType Name="RentAudit">
+          <Key>
+            <PropertyRef Name="AuditID" />
+          </Key>
+          <Property Name="AuditID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ActionType" Type="varchar" MaxLength="10" />
+          <Property Name="rentID" Type="int" />
+          <Property Name="Timestamp" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Rents">
+          <Key>
+            <PropertyRef Name="rentID" />
+          </Key>
+          <Property Name="rentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="propertyID" Type="int" />
+          <Property Name="tenantID" Type="int" />
+          <Property Name="RentAmount" Type="money" />
+          <Property Name="startDate" Type="date" />
+          <Property Name="endDate" Type="date" />
+        </EntityType>
+        <EntityType Name="Tenant">
+          <Key>
+            <PropertyRef Name="tenantID" />
+          </Key>
+          <Property Name="tenantID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="agentID" Type="int" />
+          <Property Name="tenantName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="tenantPhone" Type="varchar" MaxLength="255" />
+          <Property Name="CNIC" Type="varchar" MaxLength="255" />
+          <Property Name="password" Type="int" />
+        </EntityType>
+        <EntityType Name="TenantAudit">
+          <Key>
+            <PropertyRef Name="AuditID" />
+          </Key>
+          <Property Name="AuditID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ActionType" Type="varchar" MaxLength="10" />
+          <Property Name="tenantID" Type="int" />
+          <Property Name="Timestamp" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TransactionAudit">
+          <Key>
+            <PropertyRef Name="AuditID" />
+          </Key>
+          <Property Name="AuditID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ActionType" Type="varchar" MaxLength="10" />
+          <Property Name="transactionID" Type="int" />
+          <Property Name="Timestamp" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Transactions">
+          <Key>
+            <PropertyRef Name="transactionID" />
+          </Key>
+          <Property Name="transactionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="transactionDate" Type="date" />
+          <Property Name="transactionAmount" Type="money" />
+          <Property Name="invoiceID" Type="int" />
+        </EntityType>
+        <Association Name="FK__Applicati__tenan__619B8048">
+          <End Role="Tenant" Type="Self.Tenant" Multiplicity="0..1" />
+          <End Role="Applications" Type="Self.Applications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tenant">
+              <PropertyRef Name="tenantID" />
+            </Principal>
+            <Dependent Role="Applications">
+              <PropertyRef Name="tenantID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Invoice__propert__5535A963">
+          <End Role="Property" Type="Self.Property" Multiplicity="0..1" />
+          <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Property">
+              <PropertyRef Name="propertyID" />
+            </Principal>
+            <Dependent Role="Invoice">
+              <PropertyRef Name="propertyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Maintenan__prope__59FA5E80">
+          <End Role="Property" Type="Self.Property" Multiplicity="0..1" />
+          <End Role="Maintenance" Type="Self.Maintenance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Property">
+              <PropertyRef Name="propertyID" />
+            </Principal>
+            <Dependent Role="Maintenance">
+              <PropertyRef Name="propertyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Notices__propert__6383C8BA">
+          <End Role="Property" Type="Self.Property" Multiplicity="0..1" />
+          <End Role="Notices" Type="Self.Notices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Property">
+              <PropertyRef Name="propertyID" />
+            </Principal>
+            <Dependent Role="Notices">
+              <PropertyRef Name="propertyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Property__tenant__4E88ABD4">
+          <End Role="Tenant" Type="Self.Tenant" Multiplicity="0..1" />
+          <End Role="Property" Type="Self.Property" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tenant">
+              <PropertyRef Name="tenantID" />
+            </Principal>
+            <Dependent Role="Property">
+              <PropertyRef Name="tenantID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Rents__propertyI__5165187F">
+          <End Role="Property" Type="Self.Property" Multiplicity="0..1" />
+          <End Role="Rents" Type="Self.Rents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Property">
+              <PropertyRef Name="propertyID" />
+            </Principal>
+            <Dependent Role="Rents">
+              <PropertyRef Name="propertyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Rents__tenantID__52593CB8">
+          <End Role="Tenant" Type="Self.Tenant" Multiplicity="0..1" />
+          <End Role="Rents" Type="Self.Rents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tenant">
+              <PropertyRef Name="tenantID" />
+            </Principal>
+            <Dependent Role="Rents">
+              <PropertyRef Name="tenantID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tenant__agentID__4BAC3F29">
+          <End Role="Agents" Type="Self.Agents" Multiplicity="0..1" />
+          <End Role="Tenant" Type="Self.Tenant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agents">
+              <PropertyRef Name="agentID" />
+            </Principal>
+            <Dependent Role="Tenant">
+              <PropertyRef Name="agentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Transacti__invoi__5CD6CB2B">
+          <End Role="Invoice" Type="Self.Invoice" Multiplicity="0..1" />
+          <End Role="Transactions" Type="Self.Transactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Invoice">
+              <PropertyRef Name="invoiceID" />
+            </Principal>
+            <Dependent Role="Transactions">
+              <PropertyRef Name="invoiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="createInvoice" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="propertyID" Type="int" Mode="In" />
+          <Parameter Name="dueDate" Type="date" Mode="In" />
+          <Parameter Name="amount" Type="money" Mode="In" />
+          <Parameter Name="type" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="createNotice" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="description" Type="varchar" Mode="In" />
+          <Parameter Name="date" Type="date" Mode="In" />
+          <Parameter Name="propertyID" Type="int" Mode="In" />
+          <Parameter Name="title" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="createProperty" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="address" Type="varchar" Mode="In" />
+          <Parameter Name="type" Type="varchar" Mode="In" />
+          <Parameter Name="rooms" Type="int" Mode="In" />
+          <Parameter Name="garages" Type="int" Mode="In" />
+        </Function>
+        <Function Name="createTenant" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="agentID" Type="int" Mode="In" />
+          <Parameter Name="name" Type="varchar" Mode="In" />
+          <Parameter Name="phone" Type="varchar" Mode="In" />
+          <Parameter Name="cnic" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="deleteAgent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="agentID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="deleteRent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="rentID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="deleteTenant" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tenantID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="insertAgent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="name" Type="varchar" Mode="In" />
+          <Parameter Name="phone" Type="varchar" Mode="In" />
+          <Parameter Name="address" Type="varchar" Mode="In" />
+          <Parameter Name="fees" Type="money" Mode="In" />
+        </Function>
+        <Function Name="insertApplication" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tenantID" Type="int" Mode="In" />
+          <Parameter Name="description" Type="varchar" Mode="In" />
+          <Parameter Name="status" Type="varchar" Mode="In" />
+          <Parameter Name="title" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="insertMaintenance" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="description" Type="varchar" Mode="In" />
+          <Parameter Name="cost" Type="money" Mode="In" />
+          <Parameter Name="date" Type="date" Mode="In" />
+          <Parameter Name="propertyID" Type="int" Mode="In" />
+          <Parameter Name="title" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="insertTransaction" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="invoiceID" Type="int" Mode="In" />
+          <Parameter Name="amount" Type="money" Mode="In" />
+        </Function>
+        <Function Name="rentProperty" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tenantID" Type="int" Mode="In" />
+          <Parameter Name="propertyID" Type="int" Mode="In" />
+          <Parameter Name="rentAmount" Type="money" Mode="In" />
+          <Parameter Name="duration" Type="int" Mode="In" />
+          <Parameter Name="startDate" Type="date" Mode="In" />
+        </Function>
+        <Function Name="retrieveApplicationsOfUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="retrieveEmptyProperties" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="retrieveExpense" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="retrieveIncome" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="retrievePaidInvoicesOfUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="retrievePropertiesOfUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="retrieveRentedProperties" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="retrieveSoldProperties" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="retrieveUnpaidInvoicesOfUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userID" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="RentalManagementModelStoreContainer">
+          <EntitySet Name="Agents" EntityType="Self.Agents" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Applications" EntityType="Self.Applications" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Invoice" EntityType="Self.Invoice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Maintenance" EntityType="Self.Maintenance" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Notices" EntityType="Self.Notices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Property" EntityType="Self.Property" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PropertyAudit" EntityType="Self.PropertyAudit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RentAudit" EntityType="Self.RentAudit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rents" EntityType="Self.Rents" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tenant" EntityType="Self.Tenant" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TenantAudit" EntityType="Self.TenantAudit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TransactionAudit" EntityType="Self.TransactionAudit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Transactions" EntityType="Self.Transactions" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Applicati__tenan__619B8048" Association="Self.FK__Applicati__tenan__619B8048">
+            <End Role="Tenant" EntitySet="Tenant" />
+            <End Role="Applications" EntitySet="Applications" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Invoice__propert__5535A963" Association="Self.FK__Invoice__propert__5535A963">
+            <End Role="Property" EntitySet="Property" />
+            <End Role="Invoice" EntitySet="Invoice" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Maintenan__prope__59FA5E80" Association="Self.FK__Maintenan__prope__59FA5E80">
+            <End Role="Property" EntitySet="Property" />
+            <End Role="Maintenance" EntitySet="Maintenance" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Notices__propert__6383C8BA" Association="Self.FK__Notices__propert__6383C8BA">
+            <End Role="Property" EntitySet="Property" />
+            <End Role="Notices" EntitySet="Notices" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Property__tenant__4E88ABD4" Association="Self.FK__Property__tenant__4E88ABD4">
+            <End Role="Tenant" EntitySet="Tenant" />
+            <End Role="Property" EntitySet="Property" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Rents__propertyI__5165187F" Association="Self.FK__Rents__propertyI__5165187F">
+            <End Role="Property" EntitySet="Property" />
+            <End Role="Rents" EntitySet="Rents" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Rents__tenantID__52593CB8" Association="Self.FK__Rents__tenantID__52593CB8">
+            <End Role="Tenant" EntitySet="Tenant" />
+            <End Role="Rents" EntitySet="Rents" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tenant__agentID__4BAC3F29" Association="Self.FK__Tenant__agentID__4BAC3F29">
+            <End Role="Agents" EntitySet="Agents" />
+            <End Role="Tenant" EntitySet="Tenant" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Transacti__invoi__5CD6CB2B" Association="Self.FK__Transacti__invoi__5CD6CB2B">
+            <End Role="Invoice" EntitySet="Invoice" />
+            <End Role="Transactions" EntitySet="Transactions" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RentalManagementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Agent">
+          <Key>
+            <PropertyRef Name="agentID" />
+          </Key>
+          <Property Name="agentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="agentName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="agentPhone" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="agentAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="agentFees" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="Tenants" Relationship="Self.FK__Tenant__agentID__4BAC3F29" FromRole="Agents" ToRole="Tenant" />
+        </EntityType>
+        <EntityType Name="Application">
+          <Key>
+            <PropertyRef Name="applicationID" />
+          </Key>
+          <Property Name="applicationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tenantID" Type="Int32" />
+          <Property Name="applicationDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="applicationStatus" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="applicationTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tenant" Relationship="Self.FK__Applicati__tenan__619B8048" FromRole="Applications" ToRole="Tenant" />
+        </EntityType>
+        <EntityType Name="Invoice">
+          <Key>
+            <PropertyRef Name="invoiceID" />
+          </Key>
+          <Property Name="invoiceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="propertyID" Type="Int32" />
+          <Property Name="issueDate" Type="DateTime" Precision="0" />
+          <Property Name="dueDate" Type="DateTime" Precision="0" />
+          <Property Name="amountDue" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="invoiceType" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="invoiceStatus" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Property" Relationship="Self.FK__Invoice__propert__5535A963" FromRole="Invoice" ToRole="Property" />
+          <NavigationProperty Name="Transactions" Relationship="Self.FK__Transacti__invoi__5CD6CB2B" FromRole="Invoice" ToRole="Transactions" />
+        </EntityType>
+        <EntityType Name="Maintenance">
+          <Key>
+            <PropertyRef Name="maintenanceID" />
+          </Key>
+          <Property Name="maintenanceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="maintenanceDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="maintenanceCost" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="maintenanceDate" Type="DateTime" Precision="0" />
+          <Property Name="propertyID" Type="Int32" />
+          <Property Name="maintenanceTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Property" Relationship="Self.FK__Maintenan__prope__59FA5E80" FromRole="Maintenance" ToRole="Property" />
+        </EntityType>
+        <EntityType Name="Notice">
+          <Key>
+            <PropertyRef Name="noticeID" />
+          </Key>
+          <Property Name="noticeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="noticeDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="noticeDate" Type="DateTime" Precision="0" />
+          <Property Name="noticeTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="propertyID" Type="Int32" />
+          <NavigationProperty Name="Property" Relationship="Self.FK__Notices__propert__6383C8BA" FromRole="Notices" ToRole="Property" />
+        </EntityType>
+        <EntityType Name="Property">
+          <Key>
+            <PropertyRef Name="propertyID" />
+          </Key>
+          <Property Name="propertyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="propertyAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="propertyType" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="propertyRooms" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="propertyGarages" Type="Int32" />
+          <Property Name="tenantID" Type="Int32" />
+          <NavigationProperty Name="Invoices" Relationship="Self.FK__Invoice__propert__5535A963" FromRole="Property" ToRole="Invoice" />
+          <NavigationProperty Name="Maintenances" Relationship="Self.FK__Maintenan__prope__59FA5E80" FromRole="Property" ToRole="Maintenance" />
+          <NavigationProperty Name="Notices" Relationship="Self.FK__Notices__propert__6383C8BA" FromRole="Property" ToRole="Notices" />
+          <NavigationProperty Name="Tenant" Relationship="Self.FK__Property__tenant__4E88ABD4" FromRole="Property" ToRole="Tenant" />
+          <NavigationProperty Name="Rents" Relationship="Self.FK__Rents__propertyI__5165187F" FromRole="Property" ToRole="Rents" />
+          <Property Name="status" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="PropertyAudit">
+          <Key>
+            <PropertyRef Name="AuditID" />
+          </Key>
+          <Property Name="AuditID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ActionType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="propertyID" Type="Int32" />
+          <Property Name="Timestamp" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="RentAudit">
+          <Key>
+            <PropertyRef Name="AuditID" />
+          </Key>
+          <Property Name="AuditID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ActionType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="rentID" Type="Int32" />
+          <Property Name="Timestamp" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Rent">
+          <Key>
+            <PropertyRef Name="rentID" />
+          </Key>
+          <Property Name="rentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="propertyID" Type="Int32" />
+          <Property Name="tenantID" Type="Int32" />
+          <Property Name="RentAmount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="startDate" Type="DateTime" Precision="0" />
+          <Property Name="endDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Property" Relationship="Self.FK__Rents__propertyI__5165187F" FromRole="Rents" ToRole="Property" />
+          <NavigationProperty Name="Tenant" Relationship="Self.FK__Rents__tenantID__52593CB8" FromRole="Rents" ToRole="Tenant" />
+        </EntityType>
+        <EntityType Name="Tenant">
+          <Key>
+            <PropertyRef Name="tenantID" />
+          </Key>
+          <Property Name="tenantID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="agentID" Type="Int32" />
+          <Property Name="tenantName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tenantPhone" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CNIC" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Agent" Relationship="Self.FK__Tenant__agentID__4BAC3F29" FromRole="Tenant" ToRole="Agents" />
+          <NavigationProperty Name="Applications" Relationship="Self.FK__Applicati__tenan__619B8048" FromRole="Tenant" ToRole="Applications" />
+          <NavigationProperty Name="Properties" Relationship="Self.FK__Property__tenant__4E88ABD4" FromRole="Tenant" ToRole="Property" />
+          <NavigationProperty Name="Rents" Relationship="Self.FK__Rents__tenantID__52593CB8" FromRole="Tenant" ToRole="Rents" />
+          <Property Name="password" Type="Int32" />
+        </EntityType>
+        <EntityType Name="TenantAudit">
+          <Key>
+            <PropertyRef Name="AuditID" />
+          </Key>
+          <Property Name="AuditID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ActionType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="tenantID" Type="Int32" />
+          <Property Name="Timestamp" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="TransactionAudit">
+          <Key>
+            <PropertyRef Name="AuditID" />
+          </Key>
+          <Property Name="AuditID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ActionType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="transactionID" Type="Int32" />
+          <Property Name="Timestamp" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Transaction">
+          <Key>
+            <PropertyRef Name="transactionID" />
+          </Key>
+          <Property Name="transactionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="transactionDate" Type="DateTime" Precision="0" />
+          <Property Name="transactionAmount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="invoiceID" Type="Int32" />
+          <NavigationProperty Name="Invoice" Relationship="Self.FK__Transacti__invoi__5CD6CB2B" FromRole="Transactions" ToRole="Invoice" />
+        </EntityType>
+        <Association Name="FK__Tenant__agentID__4BAC3F29">
+          <End Role="Agents" Type="Self.Agent" Multiplicity="0..1" />
+          <End Role="Tenant" Type="Self.Tenant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agents">
+              <PropertyRef Name="agentID" />
+            </Principal>
+            <Dependent Role="Tenant">
+              <PropertyRef Name="agentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Applicati__tenan__619B8048">
+          <End Role="Tenant" Type="Self.Tenant" Multiplicity="0..1" />
+          <End Role="Applications" Type="Self.Application" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tenant">
+              <PropertyRef Name="tenantID" />
+            </Principal>
+            <Dependent Role="Applications">
+              <PropertyRef Name="tenantID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Invoice__propert__5535A963">
+          <End Role="Property" Type="Self.Property" Multiplicity="0..1" />
+          <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Property">
+              <PropertyRef Name="propertyID" />
+            </Principal>
+            <Dependent Role="Invoice">
+              <PropertyRef Name="propertyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Transacti__invoi__5CD6CB2B">
+          <End Role="Invoice" Type="Self.Invoice" Multiplicity="0..1" />
+          <End Role="Transactions" Type="Self.Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Invoice">
+              <PropertyRef Name="invoiceID" />
+            </Principal>
+            <Dependent Role="Transactions">
+              <PropertyRef Name="invoiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Maintenan__prope__59FA5E80">
+          <End Role="Property" Type="Self.Property" Multiplicity="0..1" />
+          <End Role="Maintenance" Type="Self.Maintenance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Property">
+              <PropertyRef Name="propertyID" />
+            </Principal>
+            <Dependent Role="Maintenance">
+              <PropertyRef Name="propertyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Notices__propert__6383C8BA">
+          <End Role="Property" Type="Self.Property" Multiplicity="0..1" />
+          <End Role="Notices" Type="Self.Notice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Property">
+              <PropertyRef Name="propertyID" />
+            </Principal>
+            <Dependent Role="Notices">
+              <PropertyRef Name="propertyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Property__tenant__4E88ABD4">
+          <End Role="Tenant" Type="Self.Tenant" Multiplicity="0..1" />
+          <End Role="Property" Type="Self.Property" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tenant">
+              <PropertyRef Name="tenantID" />
+            </Principal>
+            <Dependent Role="Property">
+              <PropertyRef Name="tenantID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Rents__propertyI__5165187F">
+          <End Role="Property" Type="Self.Property" Multiplicity="0..1" />
+          <End Role="Rents" Type="Self.Rent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Property">
+              <PropertyRef Name="propertyID" />
+            </Principal>
+            <Dependent Role="Rents">
+              <PropertyRef Name="propertyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Rents__tenantID__52593CB8">
+          <End Role="Tenant" Type="Self.Tenant" Multiplicity="0..1" />
+          <End Role="Rents" Type="Self.Rent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tenant">
+              <PropertyRef Name="tenantID" />
+            </Principal>
+            <Dependent Role="Rents">
+              <PropertyRef Name="tenantID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RentalManagementEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Agents" EntityType="Self.Agent" />
+          <EntitySet Name="Applications" EntityType="Self.Application" />
+          <EntitySet Name="Invoices" EntityType="Self.Invoice" />
+          <EntitySet Name="Maintenances" EntityType="Self.Maintenance" />
+          <EntitySet Name="Notices" EntityType="Self.Notice" />
+          <EntitySet Name="Properties" EntityType="Self.Property" />
+          <EntitySet Name="PropertyAudits" EntityType="Self.PropertyAudit" />
+          <EntitySet Name="RentAudits" EntityType="Self.RentAudit" />
+          <EntitySet Name="Rents" EntityType="Self.Rent" />
+          <EntitySet Name="Tenants" EntityType="Self.Tenant" />
+          <EntitySet Name="TenantAudits" EntityType="Self.TenantAudit" />
+          <EntitySet Name="TransactionAudits" EntityType="Self.TransactionAudit" />
+          <EntitySet Name="Transactions" EntityType="Self.Transaction" />
+          <AssociationSet Name="FK__Tenant__agentID__4BAC3F29" Association="Self.FK__Tenant__agentID__4BAC3F29">
+            <End Role="Agents" EntitySet="Agents" />
+            <End Role="Tenant" EntitySet="Tenants" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Applicati__tenan__619B8048" Association="Self.FK__Applicati__tenan__619B8048">
+            <End Role="Tenant" EntitySet="Tenants" />
+            <End Role="Applications" EntitySet="Applications" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Invoice__propert__5535A963" Association="Self.FK__Invoice__propert__5535A963">
+            <End Role="Property" EntitySet="Properties" />
+            <End Role="Invoice" EntitySet="Invoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Transacti__invoi__5CD6CB2B" Association="Self.FK__Transacti__invoi__5CD6CB2B">
+            <End Role="Invoice" EntitySet="Invoices" />
+            <End Role="Transactions" EntitySet="Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Maintenan__prope__59FA5E80" Association="Self.FK__Maintenan__prope__59FA5E80">
+            <End Role="Property" EntitySet="Properties" />
+            <End Role="Maintenance" EntitySet="Maintenances" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Notices__propert__6383C8BA" Association="Self.FK__Notices__propert__6383C8BA">
+            <End Role="Property" EntitySet="Properties" />
+            <End Role="Notices" EntitySet="Notices" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Property__tenant__4E88ABD4" Association="Self.FK__Property__tenant__4E88ABD4">
+            <End Role="Tenant" EntitySet="Tenants" />
+            <End Role="Property" EntitySet="Properties" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Rents__propertyI__5165187F" Association="Self.FK__Rents__propertyI__5165187F">
+            <End Role="Property" EntitySet="Properties" />
+            <End Role="Rents" EntitySet="Rents" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Rents__tenantID__52593CB8" Association="Self.FK__Rents__tenantID__52593CB8">
+            <End Role="Tenant" EntitySet="Tenants" />
+            <End Role="Rents" EntitySet="Rents" />
+          </AssociationSet>
+          <FunctionImport Name="createInvoice">
+            <Parameter Name="propertyID" Mode="In" Type="Int32" />
+            <Parameter Name="dueDate" Mode="In" Type="DateTime" />
+            <Parameter Name="amount" Mode="In" Type="Decimal" />
+            <Parameter Name="type" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="createNotice">
+            <Parameter Name="description" Mode="In" Type="String" />
+            <Parameter Name="date" Mode="In" Type="DateTime" />
+            <Parameter Name="propertyID" Mode="In" Type="Int32" />
+            <Parameter Name="title" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="createProperty">
+            <Parameter Name="address" Mode="In" Type="String" />
+            <Parameter Name="type" Mode="In" Type="String" />
+            <Parameter Name="rooms" Mode="In" Type="Int32" />
+            <Parameter Name="garages" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="createTenant">
+            <Parameter Name="agentID" Mode="In" Type="Int32" />
+            <Parameter Name="name" Mode="In" Type="String" />
+            <Parameter Name="phone" Mode="In" Type="String" />
+            <Parameter Name="cnic" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="insertAgent">
+            <Parameter Name="name" Mode="In" Type="String" />
+            <Parameter Name="phone" Mode="In" Type="String" />
+            <Parameter Name="address" Mode="In" Type="String" />
+            <Parameter Name="fees" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="insertApplication">
+            <Parameter Name="tenantID" Mode="In" Type="Int32" />
+            <Parameter Name="description" Mode="In" Type="String" />
+            <Parameter Name="status" Mode="In" Type="String" />
+            <Parameter Name="title" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="insertMaintenance">
+            <Parameter Name="description" Mode="In" Type="String" />
+            <Parameter Name="cost" Mode="In" Type="Decimal" />
+            <Parameter Name="date" Mode="In" Type="DateTime" />
+            <Parameter Name="propertyID" Mode="In" Type="Int32" />
+            <Parameter Name="title" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="insertTransaction">
+            <Parameter Name="invoiceID" Mode="In" Type="Int32" />
+            <Parameter Name="amount" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="rentProperty">
+            <Parameter Name="tenantID" Mode="In" Type="Int32" />
+            <Parameter Name="propertyID" Mode="In" Type="Int32" />
+            <Parameter Name="rentAmount" Mode="In" Type="Decimal" />
+            <Parameter Name="duration" Mode="In" Type="Int32" />
+            <Parameter Name="startDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="deleteTenant">
+          <Parameter Name="tenantID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="retrieveExpense" ReturnType="Collection(Decimal)" />
+          <FunctionImport Name="retrieveIncome" ReturnType="Collection(Decimal)" />
+          <FunctionImport Name="retrieveEmptyProperties" ReturnType="Collection(RentalManagementModel.retrieveEmptyProperties_Result)" />
+          <FunctionImport Name="retrieveRentedProperties" ReturnType="Collection(RentalManagementModel.retrieveRentedProperties_Result)" />
+          <FunctionImport Name="retrieveSoldProperties" ReturnType="Collection(RentalManagementModel.retrieveSoldProperties_Result)" />
+          <FunctionImport Name="retrieveApplicationsOfUser" ReturnType="Collection(RentalManagementModel.retrieveApplicationsOfUser_Result)">
+          <Parameter Name="userID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="retrievePaidInvoicesOfUser" ReturnType="Collection(RentalManagementModel.retrievePaidInvoicesOfUser_Result)">
+          <Parameter Name="userID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="retrievePropertiesOfUser" ReturnType="Collection(RentalManagementModel.retrievePropertiesOfUser_Result)">
+          <Parameter Name="userID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="retrieveUnpaidInvoicesOfUser" ReturnType="Collection(RentalManagementModel.retrieveUnpaidInvoicesOfUser_Result)">
+          <Parameter Name="userID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="deleteRent">
+          <Parameter Name="rentID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="deleteAgent">
+          <Parameter Name="agentID" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="retrieveEmptyProperties_Result">
+          <Property Type="Int32" Name="propertyID" Nullable="false" />
+          <Property Type="String" Name="propertyAddress" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="propertyType" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="propertyRooms" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="propertyGarages" Nullable="true" />
+          <Property Type="Int32" Name="tenantID" Nullable="true" />
+          <Property Type="String" Name="status" Nullable="true" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="retrieveRentedProperties_Result">
+          <Property Type="Int32" Name="propertyID" Nullable="false" />
+          <Property Type="String" Name="propertyAddress" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="propertyType" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="propertyRooms" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="propertyGarages" Nullable="true" />
+          <Property Type="Int32" Name="tenantID" Nullable="true" />
+          <Property Type="String" Name="status" Nullable="true" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="retrieveSoldProperties_Result">
+          <Property Type="Int32" Name="propertyID" Nullable="false" />
+          <Property Type="String" Name="propertyAddress" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="propertyType" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="propertyRooms" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="propertyGarages" Nullable="true" />
+          <Property Type="Int32" Name="tenantID" Nullable="true" />
+          <Property Type="String" Name="status" Nullable="true" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="retrieveApplicationsOfUser_Result">
+          <Property Type="Int32" Name="applicationID" Nullable="false" />
+          <Property Type="Int32" Name="tenantID" Nullable="true" />
+          <Property Type="String" Name="applicationDescription" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="applicationStatus" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="applicationTitle" Nullable="true" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="retrievePaidInvoicesOfUser_Result">
+          <Property Type="Int32" Name="invoiceID" Nullable="false" />
+          <Property Type="Int32" Name="propertyID" Nullable="true" />
+          <Property Type="DateTime" Name="issueDate" Nullable="true" />
+          <Property Type="DateTime" Name="dueDate" Nullable="true" />
+          <Property Type="Decimal" Name="amountDue" Nullable="true" Precision="19" />
+          <Property Type="String" Name="invoiceType" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="invoiceStatus" Nullable="true" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="retrievePropertiesOfUser_Result">
+          <Property Type="Int32" Name="propertyID" Nullable="false" />
+          <Property Type="String" Name="propertyAddress" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="propertyType" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="propertyRooms" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="propertyGarages" Nullable="true" />
+          <Property Type="Int32" Name="tenantID" Nullable="true" />
+          <Property Type="String" Name="status" Nullable="true" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="retrieveUnpaidInvoicesOfUser_Result">
+          <Property Type="Int32" Name="invoiceID" Nullable="false" />
+          <Property Type="Int32" Name="propertyID" Nullable="true" />
+          <Property Type="DateTime" Name="issueDate" Nullable="true" />
+          <Property Type="DateTime" Name="dueDate" Nullable="true" />
+          <Property Type="Decimal" Name="amountDue" Nullable="true" Precision="19" />
+          <Property Type="String" Name="invoiceType" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="invoiceStatus" Nullable="true" MaxLength="255" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RentalManagementModelStoreContainer" CdmEntityContainer="RentalManagementEntities">
+          <EntitySetMapping Name="Agents">
+            <EntityTypeMapping TypeName="RentalManagementModel.Agent">
+              <MappingFragment StoreEntitySet="Agents">
+                <ScalarProperty Name="agentID" ColumnName="agentID" />
+                <ScalarProperty Name="agentName" ColumnName="agentName" />
+                <ScalarProperty Name="agentPhone" ColumnName="agentPhone" />
+                <ScalarProperty Name="agentAddress" ColumnName="agentAddress" />
+                <ScalarProperty Name="agentFees" ColumnName="agentFees" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Applications">
+            <EntityTypeMapping TypeName="RentalManagementModel.Application">
+              <MappingFragment StoreEntitySet="Applications">
+                <ScalarProperty Name="applicationID" ColumnName="applicationID" />
+                <ScalarProperty Name="tenantID" ColumnName="tenantID" />
+                <ScalarProperty Name="applicationDescription" ColumnName="applicationDescription" />
+                <ScalarProperty Name="applicationStatus" ColumnName="applicationStatus" />
+                <ScalarProperty Name="applicationTitle" ColumnName="applicationTitle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Invoices">
+            <EntityTypeMapping TypeName="RentalManagementModel.Invoice">
+              <MappingFragment StoreEntitySet="Invoice">
+                <ScalarProperty Name="invoiceID" ColumnName="invoiceID" />
+                <ScalarProperty Name="propertyID" ColumnName="propertyID" />
+                <ScalarProperty Name="issueDate" ColumnName="issueDate" />
+                <ScalarProperty Name="dueDate" ColumnName="dueDate" />
+                <ScalarProperty Name="amountDue" ColumnName="amountDue" />
+                <ScalarProperty Name="invoiceType" ColumnName="invoiceType" />
+                <ScalarProperty Name="invoiceStatus" ColumnName="invoiceStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Maintenances">
+            <EntityTypeMapping TypeName="RentalManagementModel.Maintenance">
+              <MappingFragment StoreEntitySet="Maintenance">
+                <ScalarProperty Name="maintenanceID" ColumnName="maintenanceID" />
+                <ScalarProperty Name="maintenanceDescription" ColumnName="maintenanceDescription" />
+                <ScalarProperty Name="maintenanceCost" ColumnName="maintenanceCost" />
+                <ScalarProperty Name="maintenanceDate" ColumnName="maintenanceDate" />
+                <ScalarProperty Name="propertyID" ColumnName="propertyID" />
+                <ScalarProperty Name="maintenanceTitle" ColumnName="maintenanceTitle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Notices">
+            <EntityTypeMapping TypeName="RentalManagementModel.Notice">
+              <MappingFragment StoreEntitySet="Notices">
+                <ScalarProperty Name="noticeID" ColumnName="noticeID" />
+                <ScalarProperty Name="noticeDescription" ColumnName="noticeDescription" />
+                <ScalarProperty Name="noticeDate" ColumnName="noticeDate" />
+                <ScalarProperty Name="noticeTitle" ColumnName="noticeTitle" />
+                <ScalarProperty Name="propertyID" ColumnName="propertyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Properties">
+            <EntityTypeMapping TypeName="RentalManagementModel.Property">
+              <MappingFragment StoreEntitySet="Property">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="propertyID" ColumnName="propertyID" />
+                <ScalarProperty Name="propertyAddress" ColumnName="propertyAddress" />
+                <ScalarProperty Name="propertyType" ColumnName="propertyType" />
+                <ScalarProperty Name="propertyRooms" ColumnName="propertyRooms" />
+                <ScalarProperty Name="propertyGarages" ColumnName="propertyGarages" />
+                <ScalarProperty Name="tenantID" ColumnName="tenantID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PropertyAudits">
+            <EntityTypeMapping TypeName="RentalManagementModel.PropertyAudit">
+              <MappingFragment StoreEntitySet="PropertyAudit">
+                <ScalarProperty Name="AuditID" ColumnName="AuditID" />
+                <ScalarProperty Name="ActionType" ColumnName="ActionType" />
+                <ScalarProperty Name="propertyID" ColumnName="propertyID" />
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RentAudits">
+            <EntityTypeMapping TypeName="RentalManagementModel.RentAudit">
+              <MappingFragment StoreEntitySet="RentAudit">
+                <ScalarProperty Name="AuditID" ColumnName="AuditID" />
+                <ScalarProperty Name="ActionType" ColumnName="ActionType" />
+                <ScalarProperty Name="rentID" ColumnName="rentID" />
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rents">
+            <EntityTypeMapping TypeName="RentalManagementModel.Rent">
+              <MappingFragment StoreEntitySet="Rents">
+                <ScalarProperty Name="rentID" ColumnName="rentID" />
+                <ScalarProperty Name="propertyID" ColumnName="propertyID" />
+                <ScalarProperty Name="tenantID" ColumnName="tenantID" />
+                <ScalarProperty Name="RentAmount" ColumnName="RentAmount" />
+                <ScalarProperty Name="startDate" ColumnName="startDate" />
+                <ScalarProperty Name="endDate" ColumnName="endDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tenants">
+            <EntityTypeMapping TypeName="RentalManagementModel.Tenant">
+              <MappingFragment StoreEntitySet="Tenant">
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="tenantID" ColumnName="tenantID" />
+                <ScalarProperty Name="agentID" ColumnName="agentID" />
+                <ScalarProperty Name="tenantName" ColumnName="tenantName" />
+                <ScalarProperty Name="tenantPhone" ColumnName="tenantPhone" />
+                <ScalarProperty Name="CNIC" ColumnName="CNIC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TenantAudits">
+            <EntityTypeMapping TypeName="RentalManagementModel.TenantAudit">
+              <MappingFragment StoreEntitySet="TenantAudit">
+                <ScalarProperty Name="AuditID" ColumnName="AuditID" />
+                <ScalarProperty Name="ActionType" ColumnName="ActionType" />
+                <ScalarProperty Name="tenantID" ColumnName="tenantID" />
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TransactionAudits">
+            <EntityTypeMapping TypeName="RentalManagementModel.TransactionAudit">
+              <MappingFragment StoreEntitySet="TransactionAudit">
+                <ScalarProperty Name="AuditID" ColumnName="AuditID" />
+                <ScalarProperty Name="ActionType" ColumnName="ActionType" />
+                <ScalarProperty Name="transactionID" ColumnName="transactionID" />
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Transactions">
+            <EntityTypeMapping TypeName="RentalManagementModel.Transaction">
+              <MappingFragment StoreEntitySet="Transactions">
+                <ScalarProperty Name="transactionID" ColumnName="transactionID" />
+                <ScalarProperty Name="transactionDate" ColumnName="transactionDate" />
+                <ScalarProperty Name="transactionAmount" ColumnName="transactionAmount" />
+                <ScalarProperty Name="invoiceID" ColumnName="invoiceID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="createInvoice" FunctionName="RentalManagementModel.Store.createInvoice" />
+          <FunctionImportMapping FunctionImportName="createNotice" FunctionName="RentalManagementModel.Store.createNotice" />
+          <FunctionImportMapping FunctionImportName="createProperty" FunctionName="RentalManagementModel.Store.createProperty" />
+          <FunctionImportMapping FunctionImportName="createTenant" FunctionName="RentalManagementModel.Store.createTenant" />
+          <FunctionImportMapping FunctionImportName="insertAgent" FunctionName="RentalManagementModel.Store.insertAgent" />
+          <FunctionImportMapping FunctionImportName="insertApplication" FunctionName="RentalManagementModel.Store.insertApplication" />
+          <FunctionImportMapping FunctionImportName="insertMaintenance" FunctionName="RentalManagementModel.Store.insertMaintenance" />
+          <FunctionImportMapping FunctionImportName="insertTransaction" FunctionName="RentalManagementModel.Store.insertTransaction" />
+          <FunctionImportMapping FunctionImportName="rentProperty" FunctionName="RentalManagementModel.Store.rentProperty" />
+          <FunctionImportMapping FunctionImportName="deleteTenant" FunctionName="RentalManagementModel.Store.deleteTenant" />
+          <FunctionImportMapping FunctionImportName="retrieveExpense" FunctionName="RentalManagementModel.Store.retrieveExpense" />
+          <FunctionImportMapping FunctionImportName="retrieveIncome" FunctionName="RentalManagementModel.Store.retrieveIncome" />
+          <FunctionImportMapping FunctionImportName="retrieveEmptyProperties" FunctionName="RentalManagementModel.Store.retrieveEmptyProperties">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RentalManagementModel.retrieveEmptyProperties_Result">
+                <ScalarProperty Name="propertyID" ColumnName="propertyID" />
+                <ScalarProperty Name="propertyAddress" ColumnName="propertyAddress" />
+                <ScalarProperty Name="propertyType" ColumnName="propertyType" />
+                <ScalarProperty Name="propertyRooms" ColumnName="propertyRooms" />
+                <ScalarProperty Name="propertyGarages" ColumnName="propertyGarages" />
+                <ScalarProperty Name="tenantID" ColumnName="tenantID" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="retrieveRentedProperties" FunctionName="RentalManagementModel.Store.retrieveRentedProperties">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RentalManagementModel.retrieveRentedProperties_Result">
+                <ScalarProperty Name="propertyID" ColumnName="propertyID" />
+                <ScalarProperty Name="propertyAddress" ColumnName="propertyAddress" />
+                <ScalarProperty Name="propertyType" ColumnName="propertyType" />
+                <ScalarProperty Name="propertyRooms" ColumnName="propertyRooms" />
+                <ScalarProperty Name="propertyGarages" ColumnName="propertyGarages" />
+                <ScalarProperty Name="tenantID" ColumnName="tenantID" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="retrieveSoldProperties" FunctionName="RentalManagementModel.Store.retrieveSoldProperties">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RentalManagementModel.retrieveSoldProperties_Result">
+                <ScalarProperty Name="propertyID" ColumnName="propertyID" />
+                <ScalarProperty Name="propertyAddress" ColumnName="propertyAddress" />
+                <ScalarProperty Name="propertyType" ColumnName="propertyType" />
+                <ScalarProperty Name="propertyRooms" ColumnName="propertyRooms" />
+                <ScalarProperty Name="propertyGarages" ColumnName="propertyGarages" />
+                <ScalarProperty Name="tenantID" ColumnName="tenantID" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="retrieveApplicationsOfUser" FunctionName="RentalManagementModel.Store.retrieveApplicationsOfUser">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RentalManagementModel.retrieveApplicationsOfUser_Result">
+                <ScalarProperty Name="applicationID" ColumnName="applicationID" />
+                <ScalarProperty Name="tenantID" ColumnName="tenantID" />
+                <ScalarProperty Name="applicationDescription" ColumnName="applicationDescription" />
+                <ScalarProperty Name="applicationStatus" ColumnName="applicationStatus" />
+                <ScalarProperty Name="applicationTitle" ColumnName="applicationTitle" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="retrievePaidInvoicesOfUser" FunctionName="RentalManagementModel.Store.retrievePaidInvoicesOfUser">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RentalManagementModel.retrievePaidInvoicesOfUser_Result">
+                <ScalarProperty Name="invoiceID" ColumnName="invoiceID" />
+                <ScalarProperty Name="propertyID" ColumnName="propertyID" />
+                <ScalarProperty Name="issueDate" ColumnName="issueDate" />
+                <ScalarProperty Name="dueDate" ColumnName="dueDate" />
+                <ScalarProperty Name="amountDue" ColumnName="amountDue" />
+                <ScalarProperty Name="invoiceType" ColumnName="invoiceType" />
+                <ScalarProperty Name="invoiceStatus" ColumnName="invoiceStatus" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="retrievePropertiesOfUser" FunctionName="RentalManagementModel.Store.retrievePropertiesOfUser">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RentalManagementModel.retrievePropertiesOfUser_Result">
+                <ScalarProperty Name="propertyID" ColumnName="propertyID" />
+                <ScalarProperty Name="propertyAddress" ColumnName="propertyAddress" />
+                <ScalarProperty Name="propertyType" ColumnName="propertyType" />
+                <ScalarProperty Name="propertyRooms" ColumnName="propertyRooms" />
+                <ScalarProperty Name="propertyGarages" ColumnName="propertyGarages" />
+                <ScalarProperty Name="tenantID" ColumnName="tenantID" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="retrieveUnpaidInvoicesOfUser" FunctionName="RentalManagementModel.Store.retrieveUnpaidInvoicesOfUser">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RentalManagementModel.retrieveUnpaidInvoicesOfUser_Result">
+                <ScalarProperty Name="invoiceID" ColumnName="invoiceID" />
+                <ScalarProperty Name="propertyID" ColumnName="propertyID" />
+                <ScalarProperty Name="issueDate" ColumnName="issueDate" />
+                <ScalarProperty Name="dueDate" ColumnName="dueDate" />
+                <ScalarProperty Name="amountDue" ColumnName="amountDue" />
+                <ScalarProperty Name="invoiceType" ColumnName="invoiceType" />
+                <ScalarProperty Name="invoiceStatus" ColumnName="invoiceStatus" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="deleteRent" FunctionName="RentalManagementModel.Store.deleteRent" />
+          <FunctionImportMapping FunctionImportName="deleteAgent" FunctionName="RentalManagementModel.Store.deleteAgent" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

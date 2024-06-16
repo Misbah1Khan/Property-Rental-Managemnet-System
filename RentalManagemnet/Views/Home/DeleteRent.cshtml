@@ -1,0 +1,71 @@
+﻿@model RentalManagemnet.Models.Rent
+
+@{
+    ViewBag.Title = "DeleteRent";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    body {
+        margin-top: 100px;
+        margin-left: 270px;
+    }
+</style>
+<h2>DeleteRent</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Rent</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.RentAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RentAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.startDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.startDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.endDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.endDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Property.propertyAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Property.propertyAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tenant.tenantName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tenant.tenantName)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Rents")
+        </div>
+    }
+</div>

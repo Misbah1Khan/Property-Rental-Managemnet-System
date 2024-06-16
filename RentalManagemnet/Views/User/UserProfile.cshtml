@@ -1,0 +1,96 @@
+﻿@{
+    ViewBag.Title = "UserProfile";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+        margin-top: 100px;
+        margin-left: 270px;
+    }
+
+    .main-body {
+        margin-top: 50px;
+        margin-left: 350px;
+    }
+
+    h3 {
+        color: #333;
+        font-size: 24px;
+    }
+
+    .profile-section {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
+        padding: 20px;
+        width: 80%;
+    }
+
+    .profile-item {
+        border-bottom: 1px solid #ddd;
+        padding: 10px 0;
+    }
+
+        .profile-item:last-child {
+            border-bottom: none;
+        }
+
+    .profile-label {
+        font-weight: bold;
+        color: #333;
+    }
+
+    .profile-value {
+        margin-left: 10px;
+        color: #555;
+    }
+
+        .profile-value ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+            .profile-value ul li {
+                margin: 5px 0;
+            }
+</style>
+
+<div class="main-body">
+    <h3>User Profile</h3>
+    @foreach (var tenant in Model.Tenants)
+    {
+        <div class="profile-section">
+            <div class="profile-item">
+                <span class="profile-label">ID:</span>
+                <span class="profile-value">@tenant.TenantID</span>
+            </div>
+            <div class="profile-item">
+                <span class="profile-label">Name:</span>
+                <span class="profile-value">@tenant.TenantName</span>
+            </div>
+            <div class="profile-item">
+                <span class="profile-label">Phone No:</span>
+                <span class="profile-value">@tenant.TenantPhone</span>
+            </div>
+            <div class="profile-item">
+                <span class="profile-label">CNIC:</span>
+                <span class="profile-value">@tenant.CNIC</span>
+            </div>
+            <div class="profile-item">
+                <span class="profile-label">Property No:</span>
+                <span class="profile-value">@tenant.Property?.PropertyID</span>
+            </div>
+            <div class="profile-item">
+                <span class="profile-label">Bills Unpaid:</span>
+                <span class="profile-value">ViewBag.unpaidcount</span>
+            </div>
+        </div>
+    }
+</div>

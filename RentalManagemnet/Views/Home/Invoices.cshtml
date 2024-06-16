@@ -1,0 +1,148 @@
+﻿@model IEnumerable<RentalManagemnet.Models.Invoice>
+
+@{
+    ViewBag.Title = "Invoices";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+
+    .main-body {
+        margin-top: 50px;
+        margin-left: 350px;
+    }
+
+    h2 {
+        color: #333;
+        font-size: 24px;
+    }
+
+    .table {
+        border-radius: 10px;
+        width: 90%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+        .table th, .table td {
+            padding: 12px 15px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        .table th {
+            background-color: #f8f8f8;
+            color: #333;
+            position: relative;
+        }
+
+        .table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .table tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .table a {
+            color: #007bff;
+            text-decoration: none;
+            padding: 5px 10px;
+            border: 1px solid transparent;
+            border-radius: 3px;
+        }
+
+            .table a:hover {
+                background-color: #007bff;
+                color: #fff;
+                border-color: #007bff;
+            }
+
+    button {
+        background-color: white;
+        color: #007bff;
+        border: none;
+        border-radius: 8px;
+        padding: 5px 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+    }
+
+        button:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+</style>
+<body>
+    <div class="main-body">
+        <h2>Invoices</h2>
+        <table class="table">
+            <tr>
+                <th>
+                    <p>Invoice ID</p>
+                </th>
+                <th>
+                    <p>Invoice Type</p>
+                </th>
+                <th>
+                    <p>Invoice Status</p>
+                </th>
+                <th>
+                    <p>Amount Due</p>
+                </th>
+                <th>
+                    <p>Due Date</p>
+                </th>
+                <th>
+                    <p>Issue Date</p>
+                </th>
+                <th>
+                    <p>Property ID</p>
+                </th>
+                <th>
+                    <button>@Html.ActionLink("New", "CreateInvoice")</buttton>
+                </th>
+              
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.invoiceID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.invoiceType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.invoiceStatus)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.amountDue)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.dueDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.issueDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.propertyID)
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</body>

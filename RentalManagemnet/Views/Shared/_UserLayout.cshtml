@@ -1,0 +1,108 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+    <link rel="stylesheet" href="~/Content/sideBar.css" />
+    <style>
+        /* Add CSS for Material Symbols font */
+
+        .material-symbols-outlined {
+            color: white;
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20; /* Reduce icon size, optional */
+            margin-top: 15px;
+        }
+
+        .sidebar-links li {
+            display: flex;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 85px;
+            display: flex;
+            overflow-x: hidden;
+            flex-direction: column;
+            background: #161a2d;
+            padding: 15px 10px;
+            transition: all 0.4s ease;
+        }
+    </style>
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            @*@@<img src="~/images/logo.png" alt="logo" />@*@
+
+        </div>
+        <ul class="sidebar-links">
+            <li>
+                <span class="material-symbols-outlined">
+                    menu
+                </span>
+                <br />
+            </li>
+            <li>
+                <span class="material-symbols-outlined">
+                    real_estate_agent
+                </span>
+                @Html.ActionLink("Properties", "Properties", "User", null, new { @class = "nav-link" })
+            </li>
+
+            <li>
+                <span class="material-symbols-outlined">
+                    notifications
+                </span>
+                @Html.ActionLink("Noticeboard", "Notifications", "User", null, new { @class = "nav-link" })
+            </li>
+            <li>
+                <span class="material-symbols-outlined">
+                    receipt_long
+                </span>
+                @Html.ActionLink("Invoices", "Invoices", "User", null, new { @class = "nav-link" })
+            </li>
+
+            <li>
+                <span class="material-symbols-outlined">
+                    note_alt
+                </span>
+                @Html.ActionLink("Applications", "Applications", "User", null, new { @class = "nav-link" })
+            </li>
+
+            <h4>
+                <span>Account</span>
+                <div class="menu-separator"></div>
+            </h4>
+            <li>
+                <span class="material-symbols-outlined">
+                    account_circle
+                </span>
+                @Html.ActionLink("Profile", "Index", "User", null, new { @class = "nav-link" })
+            </li>
+            <li>
+                <span class="material-symbols-outlined">
+                    logout
+                </span>
+                @Html.ActionLink("Logout", "Logout", "User", null, new { @class = "nav-link" })
+            </li>
+        </ul>
+    </aside>
+    <div class="container-body">
+        @RenderBody()
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

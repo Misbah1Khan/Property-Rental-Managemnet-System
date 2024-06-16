@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="bcc3ba65dbb440fd946acb3c13773284" Name="Diagram1">
+        <EntityTypeShape EntityType="RentalManagementModel.Agent" Width="1.5" PointX="0.75" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="RentalManagementModel.Application" Width="1.5" PointX="5.25" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RentalManagementModel.Invoice" Width="1.5" PointX="7.5" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RentalManagementModel.Maintenance" Width="1.5" PointX="7.5" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RentalManagementModel.Notice" Width="1.5" PointX="7.5" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RentalManagementModel.Property" Width="1.5" PointX="5.25" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="RentalManagementModel.PropertyAudit" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RentalManagementModel.RentAudit" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RentalManagementModel.Rent" Width="1.5" PointX="10.5" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RentalManagementModel.Tenant" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RentalManagementModel.TenantAudit" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RentalManagementModel.TransactionAudit" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RentalManagementModel.Transaction" Width="1.5" PointX="9.75" PointY="6.5" IsExpanded="true" />
+        <AssociationConnector Association="RentalManagementModel.FK__Tenant__agentID__4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="RentalManagementModel.FK__Applicati__tenan__619B8048" ManuallyRouted="false" />
+        <AssociationConnector Association="RentalManagementModel.FK__Invoice__propert__5535A963" ManuallyRouted="false" />
+        <AssociationConnector Association="RentalManagementModel.FK__Transacti__invoi__5CD6CB2B" ManuallyRouted="false" />
+        <AssociationConnector Association="RentalManagementModel.FK__Maintenan__prope__59FA5E80" ManuallyRouted="false" />
+        <AssociationConnector Association="RentalManagementModel.FK__Notices__propert__6383C8BA" ManuallyRouted="false" />
+        <AssociationConnector Association="RentalManagementModel.FK__Property__tenant__4E88ABD4" ManuallyRouted="false" />
+        <AssociationConnector Association="RentalManagementModel.FK__Rents__propertyI__5165187F" ManuallyRouted="false" />
+        <AssociationConnector Association="RentalManagementModel.FK__Rents__tenantID__52593CB8" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

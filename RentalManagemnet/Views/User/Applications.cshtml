@@ -1,0 +1,121 @@
+﻿@{
+    ViewBag.Title = "Applications";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<style>
+
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+        margin-top: 100px;
+        margin-left: 270px;
+    }
+
+    .main-body {
+        margin-top: 50px;
+        margin-left: 350px;
+    }
+
+    h2 {
+        color: #333;
+        font-size: 24px;
+    }
+
+    .table {
+        border-radius: 10px;
+        width: 90%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+        .table th, .table td {
+            padding: 12px 15px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        .table th {
+            background-color: #f8f8f8;
+            color: #333;
+            position: relative;
+        }
+
+        .table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .table tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .table a {
+            color: #007bff;
+            text-decoration: none;
+            padding: 5px 10px;
+            border: 1px solid transparent;
+            border-radius: 3px;
+        }
+
+            .table a:hover {
+                background-color: #007bff;
+                color: #fff;
+                border-color: #007bff;
+            }
+
+    button {
+        background-color: white;
+        color: #007bff;
+        border: none;
+        border-radius: 8px;
+        padding: 5px 12px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        text-decoration: none;
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+        button:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+</style>
+<h3>Applications</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Application ID</th>
+            <th>Tenant ID</th>
+            <th>Application Title</th>
+            <th>Application Description</th>
+            <th>Application Status</th>
+            <th>
+                <button>@Html.ActionLink("New", "CreateApplication")</buttton>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var application in ViewBag.Applicationss)
+        {
+            <tr>
+                <td>@application.applicationID</td>
+                <td>@application.tenantID</td>
+                <td>@application.applicationTitle</td>
+                <td>@application.applicationDescription</td>
+                <td>@application.applicationStatus</td>
+                <td>
+                    @Html.ActionLink("Delete", "DeleteApplication", new { id = application.applicationID })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

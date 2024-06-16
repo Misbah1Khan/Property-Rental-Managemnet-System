@@ -1,0 +1,141 @@
+﻿@model IEnumerable<RentalManagemnet.Models.Application>
+
+@{
+    ViewBag.Title = "Applications";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+
+    .main-body {
+        margin-top: 50px;
+        margin-left: 350px;
+    }
+
+    h2 {
+        color: #333;
+        font-size: 24px;
+    }
+
+    .table {
+        border-radius: 10px;
+        width: 90%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+        .table th, .table td {
+            padding: 12px 15px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        .table th {
+            background-color: #f8f8f8;
+            color: #333;
+            position: relative;
+        }
+
+        .table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .table tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .table a {
+            color: #007bff;
+            text-decoration: none;
+            padding: 5px 10px;
+            border: 1px solid transparent;
+            border-radius: 3px;
+        }
+
+            .table a:hover {
+                background-color: #007bff;
+                color: #fff;
+                border-color: #007bff;
+            }
+
+    button {
+        background-color: white;
+        color: #007bff;
+        border: none;
+        border-radius: 8px;
+        padding: 10px 20px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        text-decoration: none;
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+        button:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+</style>
+<body>
+    <div class="main-body">
+        <h2>Applications</h2>
+        <table class="table">
+            <tr>
+                <th>
+                    <p>Application ID</p>
+                </th>
+                <th>
+                    <p>Application Title</p>
+                </th>
+                <th>
+                    <p>Application Description</p>
+                </th>
+                <th>
+                    <p>Application Status</p>
+                </th>
+                <th>
+                    <p>Tenant ID</p>
+                </th>
+              
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.applicationID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.applicationTitle)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.applicationDescription)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.applicationStatus)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tenantID)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "EditApplication", new { id = item.applicationID }) 
+                       
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</body>

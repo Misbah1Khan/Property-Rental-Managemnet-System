@@ -1,0 +1,118 @@
+﻿@{
+    ViewBag.Title = "Properties";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<style>
+
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+
+    .main-body {
+        margin-top: 50px;
+        margin-left: 350px;
+    }
+
+    h2 {
+        color: #333;
+        font-size: 24px;
+    }
+
+    .table {
+        border-radius: 10px;
+        width: 90%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+        .table th, .table td {
+            padding: 12px 15px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        .table th {
+            background-color: #f8f8f8;
+            color: #333;
+            position: relative;
+        }
+
+        .table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .table tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .table a {
+            color: #007bff;
+            text-decoration: none;
+            padding: 5px 10px;
+            border: 1px solid transparent;
+            border-radius: 3px;
+        }
+
+            .table a:hover {
+                background-color: #007bff;
+                color: #fff;
+                border-color: #007bff;
+            }
+
+    button {
+        background-color: white;
+        color: #007bff;
+        border: none;
+        border-radius: 8px;
+        padding: 10px 20px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        text-decoration: none;
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+        button:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+</style>
+<body>
+    <div class="main-body">
+        <h2>Properties</h2>
+        <h3>Rented Properties</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Property ID</th>
+                    <th>Property Address</th>
+                    <th>Property Type</th>
+                    <th>Property Rooms</th>
+                    <th>Property Garages</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var property in ViewBag.properties)
+                {
+                    <tr>
+                        <td>@property.propertyID</td>
+                        <td>@property.propertyAddress</td>
+                        <td>@property.propertyType</td>
+                        <td>@property.propertyRooms</td>
+                        <td>@property.propertyGarages</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
